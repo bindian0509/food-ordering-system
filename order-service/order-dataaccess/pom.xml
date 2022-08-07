@@ -12,8 +12,12 @@
     <artifactId>order-dataaccess</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
 
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>order-application-service</artifactId>
+        </dependency>
+    </dependencies>
 </project>
