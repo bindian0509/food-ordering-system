@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>order-service</module>
+        <module>common</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -47,6 +48,11 @@
             <dependency>
                 <groupId>com.bharat.food.ordering.system</groupId>
                 <artifactId>order-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>order-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
