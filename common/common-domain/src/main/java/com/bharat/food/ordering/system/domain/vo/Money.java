@@ -24,6 +24,14 @@ public class Money {
         return new Money(this.amount.add(money.getAmount()));
     }
 
+    public Money substract(Money money) {
+        return new Money(this.amount.subtract(money.getAmount()));
+    }
+
+    public Money multiply(int multiplier) {
+        return new Money(setScale(this.amount.multiply(new BigDecimal(multiplier))));
+    }
+
     private BigDecimal setScale (BigDecimal input) {
         return input.setScale(2, RoundingMode.HALF_EVEN);
     }
