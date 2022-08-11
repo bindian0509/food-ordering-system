@@ -1,0 +1,52 @@
+package com.bharat.food.ordering.system.order.service.domain.vo;
+/*
+ * @author bharat.verma
+ * @created Thursday, 11 August 2022
+ */
+
+import java.util.Objects;
+import java.util.UUID;
+
+public class StreetAdress {
+
+    private final UUID id;
+    private final String street;
+    private final String postalCode;
+    private final String city;
+
+    public StreetAdress(UUID id, String street, String postalCode, String city) {
+        this.id = id;
+        this.street = street;
+        this.postalCode = postalCode;
+        this.city = city;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StreetAdress that = (StreetAdress) o;
+        return street.equals(that.street) && postalCode.equals(that.postalCode) && city.equals(that.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(street, postalCode, city);
+    }
+}
