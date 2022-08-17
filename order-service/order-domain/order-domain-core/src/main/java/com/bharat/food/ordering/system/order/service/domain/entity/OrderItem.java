@@ -53,6 +53,10 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         super.setId(orderItemId);
     }
 
+    public boolean isPriceValid () {
+        return price.isGreaterThanZero()
+                && price.equals(product.getPrice()) && price.multiply(quantity).equals(subTotal);
+    }
 
     public static final class Builder {
         private OrderItemId orderItemId;
