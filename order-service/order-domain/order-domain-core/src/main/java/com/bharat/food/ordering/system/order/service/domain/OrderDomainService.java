@@ -12,7 +12,7 @@ public interface OrderDomainService {
 
     OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant);
 
-    OrderPaidEvent PayOrder(Order order);
+    OrderPaidEvent payOrder(Order order);
 
     void approveOrder();
 
