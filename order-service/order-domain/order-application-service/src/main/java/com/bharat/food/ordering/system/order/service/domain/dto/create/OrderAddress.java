@@ -4,22 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.UUID;
 
 @Getter
-@Builder
 @AllArgsConstructor
-public class OrderItem {
-
+@Builder
+public class OrderAddress {
     @NotNull
-    private final UUID productId;
+    @Max(value = 50)
+    private final String street;
     @NotNull
-    private final Integer quantity;
+    @Max(value = 10)
+    private final String postalCode;
     @NotNull
-    private final BigDecimal price;
-    @NotNull
-    private final BigDecimal subTotal;
-
+    @Max(value = 50)
+    private final String city;
 }
