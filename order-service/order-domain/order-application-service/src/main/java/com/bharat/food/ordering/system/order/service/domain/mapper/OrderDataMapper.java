@@ -2,6 +2,7 @@ package com.bharat.food.ordering.system.order.service.domain.mapper;
 
 import com.bharat.food.ordering.system.domain.vo.*;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
+import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.OrderAddress;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.OrderItem;
@@ -36,7 +37,15 @@ public class OrderDataMapper {
                 .build();
     }
 
-    private List<OrderItem> orderItemsToOrderItemsEntities(List<com.bharat.food.ordering.system.order.service.domain.dto.create.OrderItem> orderItems) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
+        return CreateOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus())
+                .message(message)
+                .build();
+    }
+
+    public List<OrderItem> orderItemsToOrderItemsEntities(List<com.bharat.food.ordering.system.order.service.domain.dto.create.OrderItem> orderItems) {
 
         return orderItems.stream().map(
                 orderItem -> OrderItem.builder()
@@ -48,7 +57,7 @@ public class OrderDataMapper {
         ).collect(Collectors.toList());
     }
 
-    private StreetAdress orderAddressToStreetAddress(OrderAddress orderAddress) {
+    public StreetAdress orderAddressToStreetAddress(OrderAddress orderAddress) {
         return new StreetAdress(
                 UUID.randomUUID(),
                 orderAddress.getStreet(),

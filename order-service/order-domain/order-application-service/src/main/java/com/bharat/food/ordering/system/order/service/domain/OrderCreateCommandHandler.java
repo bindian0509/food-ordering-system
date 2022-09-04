@@ -3,7 +3,9 @@ package com.bharat.food.ordering.system.order.service.domain;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.entity.Customer;
+import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
+import com.bharat.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.bharat.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
@@ -40,7 +42,11 @@ public class OrderCreateCommandHandler {
     public CreateOrderResponse createOrder (CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         Restaurant restaurant = checkRestaurant(createOrderCommand);
-        return null;
+        Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
+        OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+        Order orderResult = saveOrder(order);
+        log.info("Order is created with Order Id : {} ", orderResult.getId().getValue());
+        return orderDataMapper.orderToCreateOrderResponse(orderResult, "Order is created with Order Id : "+orderResult.getId().getValue());
     }
 
     private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {
@@ -61,5 +67,15 @@ public class OrderCreateCommandHandler {
             log.warn("Couldn't find customer with customer id : {} ", customerId);
             throw new OrderDomainException("Couldn't find customer with customer id : "+customerId);
         }
+    }
+
+    private Order saveOrder (Order order) {
+        Order orderResult = orderRepository.save(order);
+        if(orderResult == null) {
+            log.warn("Error occured while saving the order!");
+            throw new OrderDomainException("Order result is null, couldn't save order");
+        }
+        log.info("Order saved with order id : {} ", orderResult.getId().getValue());
+        return orderResult;
     }
 }
