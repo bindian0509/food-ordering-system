@@ -1,7 +1,5 @@
 package com.bharat.food.ordering.system.domain.vo;
 
-import com.bharat.food.ordering.system.domain.entity.BaseEntity;
-
 import java.util.Objects;
 
 public abstract class BaseId<T> {
