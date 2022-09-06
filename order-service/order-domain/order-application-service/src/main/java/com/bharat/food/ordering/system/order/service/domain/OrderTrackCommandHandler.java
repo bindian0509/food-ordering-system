@@ -33,6 +33,6 @@ public class OrderTrackCommandHandler {
             log.warn("Couldn't find order with tracking id : {} ",trackOrderQuery.getOrderTrackingId());
             throw new OrderNotFoundException("Couldn't find order with tracking id : "+trackOrderQuery.getOrderTrackingId());
         }
-        return null;
+        return orderDataMapper.orderToTrackOrderResponse(orderResult.get());
     }
 }

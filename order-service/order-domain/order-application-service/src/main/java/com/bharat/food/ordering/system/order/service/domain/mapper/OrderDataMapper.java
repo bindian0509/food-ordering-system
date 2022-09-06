@@ -7,6 +7,7 @@ import com.bharat.food.ordering.system.domain.vo.RestaurantId;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.OrderAddress;
+import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderReponse;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.OrderItem;
 import com.bharat.food.ordering.system.order.service.domain.entity.Product;
@@ -67,5 +68,13 @@ public class OrderDataMapper {
                 orderAddress.getPostalCode(),
                 orderAddress.getCity()
         );
+    }
+
+    public TrackOrderReponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderReponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus())
+                .failureMessages(order.getFailureMessages())
+                .build();
     }
 }
