@@ -12,13 +12,14 @@ import com.bharat.food.ordering.system.order.service.domain.vo.StreetAdress;
 import com.bharat.food.ordering.system.order.service.domain.vo.TrackingId;
 
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 public class Order extends AggregateRoot<OrderId> {
 
     private final CustomerId customerId;
     private final RestaurantId restaurantId;
-    private final StreetAdress deliveryAdress;
+    private final StreetAdress deliveryAddress;
     private final Money price;
     private final List<OrderItem> items;
 
@@ -115,7 +116,7 @@ public class Order extends AggregateRoot<OrderId> {
         super.setId(builder.orderId);
         customerId = builder.customerId;
         restaurantId = builder.restaurantId;
-        deliveryAdress = builder.deliveryAdress;
+        deliveryAddress = builder.deliveryAdress;
         price = builder.price;
         items = builder.items;
         trackingId = builder.trackingId;
@@ -135,8 +136,8 @@ public class Order extends AggregateRoot<OrderId> {
         return restaurantId;
     }
 
-    public StreetAdress getDeliveryAdress() {
-        return deliveryAdress;
+    public StreetAdress getDeliveryAddress() {
+        return deliveryAddress;
     }
 
     public Money getPrice() {
@@ -222,5 +223,19 @@ public class Order extends AggregateRoot<OrderId> {
         public Order build() {
             return new Order(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Order.class.getSimpleName() + "[", "]")
+                .add("customerId=" + customerId)
+                .add("restaurantId=" + restaurantId)
+                .add("deliveryAddress=" + deliveryAddress)
+                .add("price=" + price)
+                .add("items=" + items)
+                .add("trackingId=" + trackingId)
+                .add("orderStatus=" + orderStatus)
+                .add("failureMessages=" + failureMessages)
+                .toString();
     }
 }

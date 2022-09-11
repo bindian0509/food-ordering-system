@@ -46,7 +46,7 @@ public class OrderCreateCommandHandler {
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
         Order orderResult = saveOrder(order);
         log.info("Order is created with Order Id : {} ", orderResult.getId().getValue());
-        return orderDataMapper.orderToCreateOrderResponse(orderResult, "Order is created with Order Id : "+orderResult.getId().getValue());
+        return orderDataMapper.orderToCreateOrderResponse(orderResult, "Order is created successfully");
     }
 
     private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {
@@ -72,10 +72,12 @@ public class OrderCreateCommandHandler {
     private Order saveOrder (Order order) {
         Order orderResult = orderRepository.save(order);
         if(orderResult == null) {
-            log.warn("Error occured while saving the order!");
+            log.warn("Error occurred while saving the order!");
             throw new OrderDomainException("Order result is null, couldn't save order");
         }
         log.info("Order saved with order id : {} ", orderResult.getId().getValue());
-        return orderResult;
+        log.info("Order saved : {} ", orderResult);
+        // TODO change this when playing with actual JPA
+        return order;
     }
 }

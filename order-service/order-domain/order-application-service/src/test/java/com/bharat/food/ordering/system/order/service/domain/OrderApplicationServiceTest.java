@@ -2,6 +2,7 @@ package com.bharat.food.ordering.system.order.service.domain;
 
 import com.bharat.food.ordering.system.domain.vo.*;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
+import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.OrderAddress;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.OrderItem;
 import com.bharat.food.ordering.system.order.service.domain.entity.Customer;
@@ -14,6 +15,7 @@ import com.bharat.food.ordering.system.order.service.domain.ports.output.reposit
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +25,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -137,10 +141,10 @@ public class OrderApplicationServiceTest {
         Restaurant restaurantResponse = Restaurant.builder()
                 .restaurantId(new RestaurantId(createOrderCommand.getRestaurantId()))
                 .products(List.of(
-                        new Product(new ProductId(PRODUCT_ID), "product-1" ,
+                        new Product(new ProductId(PRODUCT_ID), "product-1",
                                 new Money(new BigDecimal( "50.00"))),
                         new Product(
-                                new ProductId(PRODUCT_ID), "product-2" ,
+                                new ProductId(PRODUCT_ID), "product-2",
                                 new Money(new BigDecimal( "50.00")))))
                 .active(true)
                 .build();
@@ -153,5 +157,13 @@ public class OrderApplicationServiceTest {
                 .thenReturn(Optional.of(restaurantResponse));
         when(orderRepository.save(any(Order.class))).thenReturn(order);
 
+    }
+
+    @Test
+    public void testCreateOrder () {
+        CreateOrderResponse createOrderResponse = orderApplicationService.createOrder(createOrderCommand);
+        assertEquals(createOrderResponse.getOrderStatus(), OrderStatus.PENDING);
+        assertEquals(createOrderResponse.getMessage(), "Order is created successfully");
+        assertNotNull(createOrderResponse.getOrderTrackingId());
     }
 }
