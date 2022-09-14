@@ -9,6 +9,7 @@ import com.bharat.food.ordering.system.order.service.domain.entity.Customer;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.Product;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
+import com.bharat.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.bharat.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
 import com.bharat.food.ordering.system.order.service.domain.ports.input.service.OrderApplicationService;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
@@ -25,8 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -165,5 +165,21 @@ public class OrderApplicationServiceTest {
         assertEquals(createOrderResponse.getOrderStatus(), OrderStatus.PENDING);
         assertEquals(createOrderResponse.getMessage(), "Order is created successfully");
         assertNotNull(createOrderResponse.getOrderTrackingId());
+    }
+
+    @Test
+    public void testCreateOrderWithWrongTotalPrice() {
+        OrderDomainException orderDomainException = assertThrows(OrderDomainException.class,
+                () -> orderApplicationService.createOrder(createOrderCommandWrongPrice));
+        assertEquals(orderDomainException.getMessage(),
+                "Total price: 250.00 is not equal to the order items total: 200.00!");
+    }
+
+    @Test
+    public void testCreateOrderWithWrongProductPrice() {
+        OrderDomainException orderDomainException = assertThrows(OrderDomainException.class,
+                () -> orderApplicationService.createOrder(createOrderCommandWrongProductPrice));
+        assertEquals(orderDomainException.getMessage(),
+                "Order items price: 60.00 not valid for product "+PRODUCT_ID);
     }
 }
