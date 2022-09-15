@@ -72,7 +72,7 @@ services:
     image: hlebalbau/kafka-manager:stable
     restart: always
     ports:
-      - "9000:9000"
+      - "9001:9001"
     environment:
       ZK_HOSTS: "zookeeper:2181"
     networks:
