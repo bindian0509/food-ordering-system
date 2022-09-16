@@ -16,5 +16,29 @@
         <module>kafka-model</module>
         <module>kafka-config</module>
     </modules>
-
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>https://pacakages.confluent.io/maven</url>
+        </repository>
+    </repositories>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>2.9.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.conflent</groupId>
+                <artifactId>kafka-avro-serializer</artifactId>
+                <version>7.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro</artifactId>
+                <version>1.11.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
