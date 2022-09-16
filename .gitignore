@@ -29,7 +29,6 @@ buildSrc/build
 spring-test/test-output/
 
 # Maven artifacts
-pom.xml
 target/
 
 # Eclipse artifacts, including WTP generated manifests
@@ -51,3 +50,6 @@ atlassian-ide-plugin.xml
 
 # VS Code
 .vscode/
+
+# kafka items
+infrastructure/docker-compose/volumes/
