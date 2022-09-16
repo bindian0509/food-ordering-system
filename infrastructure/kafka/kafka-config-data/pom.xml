@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-
-    <artifactId>kafka-config</artifactId>
+    <artifactId>kafka-config-data</artifactId>
 
 </project>
