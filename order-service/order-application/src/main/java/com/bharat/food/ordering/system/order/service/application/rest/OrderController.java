@@ -2,13 +2,14 @@ package com.bharat.food.ordering.system.order.service.application.rest;
 
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
+import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
+import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderReponse;
 import com.bharat.food.ordering.system.order.service.domain.ports.input.service.OrderApplicationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -33,5 +34,12 @@ public class OrderController {
         return ResponseEntity.ok(createOrderResponse);
     }
 
+    @GetMapping("/{trackingId}")
+    public ResponseEntity<TrackOrderReponse> getOrderByTrackingId (@PathVariable UUID trackingId) {
+        TrackOrderReponse trackOrderReponse = orderApplicationService.trackOrder(
+                TrackOrderQuery.builder().orderTrackingId(trackingId).build());
+        log.info("returning order status with tracking id : {} ", trackOrderReponse.getOrderTrackingId());
+        return ResponseEntity.ok(trackOrderReponse);
+    }
 
 }
