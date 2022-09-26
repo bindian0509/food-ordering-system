@@ -6,6 +6,7 @@
         <artifactId>infrastructure</artifactId>
         <groupId>com.bharat.food.ordering.system</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kafka</artifactId>
@@ -16,12 +17,16 @@
         <module>kafka-model</module>
         <module>kafka-config-data</module>
     </modules>
+
+
     <repositories>
         <repository>
             <id>confluent</id>
-            <url>https://packages.confluent.io/maven</url>
+            <url>https://packages.confluent.io/maven/</url>
         </repository>
     </repositories>
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -30,26 +35,26 @@
                 <version>${spring-kafka.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.conflent</groupId>
+                <groupId>io.confluent</groupId>
                 <artifactId>kafka-avro-serializer</artifactId>
                 <version>${kafka-avro-serializer.version}</version>
                 <exclusions>
                     <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-core</artifactId>
-                </exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-core</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>

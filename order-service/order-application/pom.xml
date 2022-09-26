@@ -28,5 +28,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>common-application</artifactId>
+        </dependency>
     </dependencies>
 </project>

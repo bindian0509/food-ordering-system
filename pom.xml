@@ -7,6 +7,7 @@
         <module>order-service</module>
         <module>common</module>
         <module>infrastructure</module>
+        <module>infrastructure/kafka</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -63,6 +64,11 @@
             <dependency>
                 <groupId>com.bharat.food.ordering.system</groupId>
                 <artifactId>common-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>common-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

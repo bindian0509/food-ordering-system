@@ -1,4 +1,4 @@
-package com.bharat.food.ordering.system.order.service.application.exception.handler;
+package com.bharat.food.ordering.system.application.handler;
 
 
 import lombok.AllArgsConstructor;

@@ -8,21 +8,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
     <artifactId>kafka-producer</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.bharat.food.ordering.system</groupId>
-            <artifactId>order-domain-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.bharat.food.ordering.system</groupId>
-            <artifactId>common-domain</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
+            <artifactId>kafka-model</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.bharat.food.ordering.system</groupId>
@@ -31,13 +23,21 @@
         </dependency>
         <dependency>
             <groupId>com.bharat.food.ordering.system</groupId>
-            <artifactId>kafka-model</artifactId>
+            <artifactId>order-domain-core</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>common-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
-            <version>${kafka-avro-serializer.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,5 +1,6 @@
 package com.bharat.food.ordering.system.order.service.application.exception.handler;
 
+import com.bharat.food.ordering.system.application.handler.ErrorDTO;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderNotFoundException;
 import lombok.extern.slf4j.Slf4j;
