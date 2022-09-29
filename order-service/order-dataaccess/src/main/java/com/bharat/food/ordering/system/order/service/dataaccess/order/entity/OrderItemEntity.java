@@ -3,6 +3,7 @@ package com.bharat.food.ordering.system.order.service.dataaccess.order.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -11,31 +12,34 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_address")
+@IdClass(OrderItemEntityId.class)
+@Table(name = "order_items")
 @Entity
-public class OrderAddressEntity {
+public class OrderItemEntity {
 
     @Id
-    private UUID id;
+    private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Id
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
     private OrderEntity order;
 
-    private String street;
-    private String postalCode;
-    private String city;
+    private UUID productId;
+    private BigDecimal price;
+    private Integer quantity;
+    private BigDecimal subTotal;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderAddressEntity that = (OrderAddressEntity) o;
-        return id.equals(that.id);
+        OrderItemEntity that = (OrderItemEntity) o;
+        return id.equals(that.id) && order.equals(that.order);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, order);
     }
 }
