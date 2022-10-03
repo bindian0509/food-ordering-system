@@ -2,10 +2,7 @@ package com.bharat.food.ordering.system.order.service.dataaccess.restaurant.enti
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -14,25 +11,16 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(RestaurantEntityId.class)
-@Table(name = "order_restaurant_m_view", schema = "restaurant")
-@Entity
-public class RestaurantEntity {
-    @Id
-    private UUID restaurantId;
-    @Id
-    private UUID productId;
+public class RestaurantEntityId implements Serializable {
 
-    private String restaurantName;
-    private String restaurantActive;
-    private String productName;
-    private String productPrice;
+    private UUID restaurantId;
+    private UUID productId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RestaurantEntity that = (RestaurantEntity) o;
+        RestaurantEntityId that = (RestaurantEntityId) o;
         return restaurantId.equals(that.restaurantId) && productId.equals(that.productId);
     }
 
