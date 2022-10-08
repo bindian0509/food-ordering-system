@@ -30,7 +30,7 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
 
     @Override
     @KafkaListener(id = "${kafka-consumer-config.payment-consumer-group-id}", topics = "${order-service.payment-response-topic-name}")
-    public void receive(@Payload  List<PaymentResponseAvroModel> messages,
+    public void receive(@Payload List<PaymentResponseAvroModel> messages,
                         @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<Long> keys,
                         @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
@@ -42,7 +42,13 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
         messages.forEach(paymentResponseAvroModel -> {
             if(PaymentStatus.COMPLETED == paymentResponseAvroModel.getPaymentStatus()) {
                 log.info("Processing successful payment for order id: {}" , paymentResponseAvroModel.getOrderId());
-                paymentResponseMessageListener.paymentCompleted(orderMessagingDataMapper.paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel)) ;
+                paymentResponseMessageListener.paymentCompleted(orderMessagingDataMapper
+                        .paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel)) ;
+            } else if (PaymentStatus.FAILED == paymentResponseAvroModel.getPaymentStatus() ||
+                    PaymentStatus.CANCELLED == paymentResponseAvroModel.getPaymentStatus()) {
+                log.info("Processing unsuccessful payment for order id : {}", paymentResponseAvroModel.getOrderId());
+                paymentResponseMessageListener.paymentCancelled(orderMessagingDataMapper
+                        .paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel));
             }
         });
     }

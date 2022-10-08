@@ -2,6 +2,7 @@ package com.bharat.food.ordering.system.order.service.messaging.mapper;
 
 import com.bharat.food.ordering.system.kafka.order.avro.model.*;
 import com.bharat.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
+import com.bharat.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
@@ -72,6 +73,21 @@ public class OrderMessagingDataMapper {
                 .paymentStatus(com.bharat.food.ordering.system.domain.vo.PaymentStatus.valueOf(
                         paymentResponseAvroModel.getPaymentStatus().name()))
                 .failureMessages(paymentResponseAvroModel.getFailureMessages())
+                .build();
+    }
+
+    public RestaurantApprovalResponse
+    approvalResponseAvroModelToApprovalResponse(RestaurantApprovalResponseAvroModel
+            restaurantApprovalResponseAvroModel) {
+        return RestaurantApprovalResponse.builder()
+                .id(restaurantApprovalResponseAvroModel.getId())
+                .sagaId(restaurantApprovalResponseAvroModel.getSagaId())
+                .restaurantId(restaurantApprovalResponseAvroModel.getRestaurantId())
+                .orderId(restaurantApprovalResponseAvroModel.getOrderId())
+                .createdAt(restaurantApprovalResponseAvroModel.getCreatedAt())
+                .orderApprovalStatus(com.bharat.food.ordering.system.domain.vo.OrderApprovalStatus.valueOf(
+                        restaurantApprovalResponseAvroModel.getOrderApprovalStatus().name()))
+                .failureMessages(restaurantApprovalResponseAvroModel.getFailureMessages())
                 .build();
     }
 }
