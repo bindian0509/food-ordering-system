@@ -2,6 +2,7 @@ package com.bharat.food.ordering.system.order.service.messaging.listener.kafka;
 
 import com.bharat.food.ordering.system.kafka.consumer.KafkaConsumer;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
+import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentStatus;
 import com.bharat.food.ordering.system.order.service.domain.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import com.bharat.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,16 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
                         @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<Long> keys,
                         @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
-
+        log.info("{} number of payment responses received with keys: {}, partitions: {} and offsets: {}",
+                messages.size(),
+                keys.toString(),
+                partitions.toString(),
+                offsets.toString());
+        messages.forEach(paymentResponseAvroModel -> {
+            if(PaymentStatus.COMPLETED == paymentResponseAvroModel.getPaymentStatus()) {
+                log.info("Processing successful payment for order id: {}" , paymentResponseAvroModel.getOrderId());
+                paymentResponseMessageListener.paymentCompleted(orderMessagingDataMapper.paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel)) ;
+            }
+        });
     }
 }
