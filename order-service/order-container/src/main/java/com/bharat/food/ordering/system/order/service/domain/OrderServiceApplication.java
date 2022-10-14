@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /*
- * @author bharat
+ * @author Bharat
  * @created Friday, 14 October 2022
  */
 
