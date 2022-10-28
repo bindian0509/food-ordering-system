@@ -33,7 +33,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>{project.groupId}/customer.service:${project.version}</name>
+                        <name>${project.groupId}/customer.service:${project.version}</name>
                     </image>
                 </configuration>
                 <executions>
