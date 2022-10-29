@@ -4,12 +4,13 @@ import com.bharat.food.ordering.system.order.service.dataaccess.customer.mapper.
 import com.bharat.food.ordering.system.order.service.dataaccess.customer.repository.CustomerJpaRepository;
 import com.bharat.food.ordering.system.order.service.domain.entity.Customer;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@Component
 public class CustomerRepositoryImpl implements CustomerRepository {
-
 
     private final CustomerJpaRepository customerJpaRepository;
     private final CustomerDataAccessMapper customerDataAccessMapper;
