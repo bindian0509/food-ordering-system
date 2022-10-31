@@ -27,5 +27,5 @@ public class CreateOrderCommand {
     private final List<OrderItem> items;
 
     @NotNull
-    private final OrderAddress orderAddress;
+    private final OrderAddress address;
 }

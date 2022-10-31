@@ -66,7 +66,7 @@ public class OrderApplicationServiceTest {
         createOrderCommand = CreateOrderCommand.builder()
                 .customerId(CUSTOMER_ID)
                 .restaurantId(RESTAURANT_ID)
-                .orderAddress(
+                .address(
                         OrderAddress.builder()
                                 .street("street_1")
                                 .postalCode("1000AB")
@@ -91,7 +91,7 @@ public class OrderApplicationServiceTest {
         createOrderCommandWrongPrice = CreateOrderCommand.builder()
                 .customerId(CUSTOMER_ID)
                 .restaurantId(RESTAURANT_ID)
-                .orderAddress(OrderAddress.builder()
+                .address(OrderAddress.builder()
                         .street("street_1")
                         .postalCode("1000AB")
                         .city("Paris")
@@ -115,7 +115,7 @@ public class OrderApplicationServiceTest {
         createOrderCommandWrongProductPrice = CreateOrderCommand.builder()
                 .customerId(CUSTOMER_ID)
                 .restaurantId(RESTAURANT_ID)
-                .orderAddress(OrderAddress.builder()
+                .address(OrderAddress.builder()
                         .street("street_1")
                         .postalCode("1000AB")
                         .city("Paris")
