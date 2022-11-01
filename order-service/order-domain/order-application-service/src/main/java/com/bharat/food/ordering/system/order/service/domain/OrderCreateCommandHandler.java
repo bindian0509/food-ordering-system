@@ -8,6 +8,7 @@ import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.bharat.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
+import com.bharat.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
@@ -27,15 +28,18 @@ public class OrderCreateCommandHandler {
     private final CustomerRepository customerRepository;
     private final RestaurantRepository restaurantRepository;
     private final OrderDataMapper orderDataMapper;
+    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
 
     public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository,
                                      CustomerRepository customerRepository, RestaurantRepository restaurantRepository,
-                                     OrderDataMapper orderDataMapper) {
+                                     OrderDataMapper orderDataMapper,
+                                     OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.restaurantRepository = restaurantRepository;
         this.orderDataMapper = orderDataMapper;
+        this.orderCreatedPaymentRequestMessagePublisher = orderCreatedPaymentRequestMessagePublisher;
     }
 
     @Transactional
@@ -46,6 +50,7 @@ public class OrderCreateCommandHandler {
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
         Order orderResult = saveOrder(order);
         log.info("Order is created with Order Id : {} ", orderResult.getId().getValue());
+        orderCreatedPaymentRequestMessagePublisher.publish(orderCreatedEvent);
         return orderDataMapper.orderToCreateOrderResponse(orderResult, "Order is created successfully");
     }
 
@@ -75,9 +80,6 @@ public class OrderCreateCommandHandler {
             log.warn("Error occurred while saving the order!");
             throw new OrderDomainException("Order result is null, couldn't save order");
         }
-        log.info("Order saved with order id : {} ", orderResult.getId().getValue());
-        log.info("Order saved : {} ", orderResult);
-        // TODO change this when playing with actual JPA
-        return order;
+        return orderResult;
     }
 }
