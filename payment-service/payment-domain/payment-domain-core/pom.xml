@@ -11,4 +11,10 @@
 
     <artifactId>payment-domain-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>common-domain</artifactId>
+        </dependency>
+    </dependencies>
 </project>
