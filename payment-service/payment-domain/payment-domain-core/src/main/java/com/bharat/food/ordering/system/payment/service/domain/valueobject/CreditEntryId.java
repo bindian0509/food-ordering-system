@@ -4,5 +4,12 @@ package com.bharat.food.ordering.system.payment.service.domain.valueobject;
  * @created Friday, 20 January 2023
  */
 
-public class CreditEntryId {
+import com.bharat.food.ordering.system.domain.vo.BaseId;
+
+import java.util.UUID;
+
+public class CreditEntryId extends BaseId<UUID> {
+    public CreditEntryId(UUID value) {
+        super(value);
+    }
 }
