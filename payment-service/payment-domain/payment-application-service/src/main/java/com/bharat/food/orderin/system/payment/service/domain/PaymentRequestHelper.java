@@ -18,13 +18,12 @@ import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -58,12 +57,29 @@ public class PaymentRequestHelper {
         PaymentEvent paymentEvent =
                 paymentDomainService.validateAndInitializePayment(
                         payment, creditEntry, creditHistories, failureMessages);
-        paymentRepository.save(payment);
+        persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
+        return paymentEvent;
+    }
 
-        if(failureMessages.isEmpty()) {
-            creditEntryRepository.save(creditEntry);
-            creditHistoryRepository.save(creditHistories.get(creditHistories.size()-1));
+
+
+    @Transactional
+    public PaymentEvent persistCancelPayment (PaymentRequest paymentRequest) {
+        log.info("Received payment roll back event for orderId : {} ", paymentRequest.getOrderId());
+        Optional<Payment> paymentResponse =
+                paymentRepository.findByOrderId(UUID.fromString(paymentRequest.getOrderId()));
+        if(paymentResponse.isEmpty()) {
+            log.error("payment with orderId : {} could not be found", paymentRequest.getOrderId());
+            throw new PaymentApplicationServiceException("payment with orderId : "
+                    +paymentRequest.getOrderId()+" could not be found!");
         }
+        Payment payment = paymentResponse.get();
+        CreditEntry creditEntry = getCreditEntry(payment.getCustomerId());
+        List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
+        List<String> failureMessages = new ArrayList<>();
+        PaymentEvent paymentEvent = paymentDomainService
+                .validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages);
+        persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
 
@@ -85,5 +101,17 @@ public class PaymentRequestHelper {
                     customerId.getValue());
         }
         return creditHistories.get();
+    }
+
+    private void persistDbObjects(Payment payment,
+                                  CreditEntry creditEntry,
+                                  List<CreditHistory> creditHistories,
+                                  List<String> failureMessages) {
+        paymentRepository.save(payment);
+
+        if(failureMessages.isEmpty()) {
+            creditEntryRepository.save(creditEntry);
+            creditHistoryRepository.save(creditHistories.get(creditHistories.size()-1));
+        }
     }
 }
