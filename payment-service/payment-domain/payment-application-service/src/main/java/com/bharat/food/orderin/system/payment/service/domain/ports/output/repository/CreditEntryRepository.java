@@ -8,7 +8,6 @@ import com.bharat.food.ordering.system.domain.vo.CustomerId;
 import com.bharat.food.ordering.system.payment.service.domain.entity.CreditEntry;
 
 import java.util.Optional;
-import java.util.UUID;
 
 public interface CreditEntryRepository {
 

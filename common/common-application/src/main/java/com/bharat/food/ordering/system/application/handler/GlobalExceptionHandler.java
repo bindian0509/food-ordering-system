@@ -1,7 +1,6 @@
 package com.bharat.food.ordering.system.application.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.internal.metadata.aggregated.rule.OverridingMethodMustNotAlterParameterConstraints;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -8,7 +8,6 @@ import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
-import java.util.List;
 
 public class PaymentCancelledEvent extends PaymentEvent{
 
