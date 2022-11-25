@@ -10,11 +10,14 @@ import com.bharat.food.orderin.system.payment.service.domain.mapper.PaymentDataM
 import com.bharat.food.orderin.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
 import com.bharat.food.orderin.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import com.bharat.food.orderin.system.payment.service.domain.ports.output.repository.PaymentRepository;
+import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.domain.vo.CustomerId;
 import com.bharat.food.ordering.system.payment.service.domain.PaymentDomainService;
 import com.bharat.food.ordering.system.payment.service.domain.entity.CreditEntry;
 import com.bharat.food.ordering.system.payment.service.domain.entity.CreditHistory;
 import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
+import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
+import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -34,17 +37,23 @@ public class PaymentRequestHelper {
     private final PaymentRepository paymentRepository;
     private final CreditEntryRepository creditEntryRepository ;
     private final CreditHistoryRepository creditHistoryRepository;
+    private final DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher;
+    private final DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher;
 
     public PaymentRequestHelper(PaymentDomainService paymentDomainService,
                                 PaymentDataMapper paymentDataMapper,
                                 PaymentRepository paymentRepository,
                                 CreditEntryRepository creditEntryRepository,
-                                CreditHistoryRepository creditHistoryRepository) {
+                                CreditHistoryRepository creditHistoryRepository,
+                                DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher,
+                                DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher) {
         this.paymentDomainService = paymentDomainService;
         this.paymentDataMapper = paymentDataMapper;
         this.paymentRepository = paymentRepository;
         this.creditEntryRepository = creditEntryRepository;
         this.creditHistoryRepository = creditHistoryRepository;
+        this.paymentCompletedEventDomainEventPublisher = paymentCompletedEventDomainEventPublisher;
+        this.paymentCancelledEventDomainEventPublisher = paymentCancelledEventDomainEventPublisher;
     }
 
     @Transactional
@@ -56,7 +65,8 @@ public class PaymentRequestHelper {
         List<String> failureMessages = new ArrayList<>();
         PaymentEvent paymentEvent =
                 paymentDomainService.validateAndInitializePayment(
-                        payment, creditEntry, creditHistories, failureMessages);
+                        payment, creditEntry, creditHistories, failureMessages,
+                        paymentCompletedEventDomainEventPublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
@@ -78,7 +88,7 @@ public class PaymentRequestHelper {
         List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
         List<String> failureMessages = new ArrayList<>();
         PaymentEvent paymentEvent = paymentDomainService
-                .validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages);
+                .validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages, paymentCancelledEventDomainEventPublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
