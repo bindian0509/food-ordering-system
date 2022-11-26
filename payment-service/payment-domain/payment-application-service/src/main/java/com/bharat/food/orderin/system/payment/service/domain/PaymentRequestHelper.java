@@ -19,6 +19,7 @@ import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentEvent;
+import com.bharat.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,7 @@ public class PaymentRequestHelper {
     private final CreditHistoryRepository creditHistoryRepository;
     private final DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher;
     private final DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher;
+    private final DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher;
 
     public PaymentRequestHelper(PaymentDomainService paymentDomainService,
                                 PaymentDataMapper paymentDataMapper,
@@ -46,7 +48,8 @@ public class PaymentRequestHelper {
                                 CreditEntryRepository creditEntryRepository,
                                 CreditHistoryRepository creditHistoryRepository,
                                 DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher,
-                                DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher) {
+                                DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher,
+                                DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher) {
         this.paymentDomainService = paymentDomainService;
         this.paymentDataMapper = paymentDataMapper;
         this.paymentRepository = paymentRepository;
@@ -54,6 +57,7 @@ public class PaymentRequestHelper {
         this.creditHistoryRepository = creditHistoryRepository;
         this.paymentCompletedEventDomainEventPublisher = paymentCompletedEventDomainEventPublisher;
         this.paymentCancelledEventDomainEventPublisher = paymentCancelledEventDomainEventPublisher;
+        this.paymentFailedEventDomainEventPublisher = paymentFailedEventDomainEventPublisher;
     }
 
     @Transactional
@@ -66,7 +70,8 @@ public class PaymentRequestHelper {
         PaymentEvent paymentEvent =
                 paymentDomainService.validateAndInitializePayment(
                         payment, creditEntry, creditHistories, failureMessages,
-                        paymentCompletedEventDomainEventPublisher);
+                        paymentCompletedEventDomainEventPublisher,
+                        paymentFailedEventDomainEventPublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
@@ -88,7 +93,9 @@ public class PaymentRequestHelper {
         List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
         List<String> failureMessages = new ArrayList<>();
         PaymentEvent paymentEvent = paymentDomainService
-                .validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages, paymentCancelledEventDomainEventPublisher);
+                .validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages,
+                        paymentCancelledEventDomainEventPublisher,
+                        paymentFailedEventDomainEventPublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
