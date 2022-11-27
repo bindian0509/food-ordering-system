@@ -54,13 +54,5 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
                 paymentEvent.getPayment().getOrderId().getValue());
 
         paymentEvent.fire();
-
-        if (paymentEvent instanceof PaymentCompletedEvent) {
-            paymentCompletedMessagePublisher.publish((PaymentCompletedEvent) paymentEvent);
-        } else if (paymentEvent instanceof PaymentCancelledEvent) {
-            paymentCancelledMessagePublisher.publish((PaymentCancelledEvent) paymentEvent);
-        } else if (paymentEvent instanceof PaymentFailedEvent) {
-            paymentFailedMessagePublisher.publish((PaymentFailedEvent) paymentEvent);
-        }
     }
 }
