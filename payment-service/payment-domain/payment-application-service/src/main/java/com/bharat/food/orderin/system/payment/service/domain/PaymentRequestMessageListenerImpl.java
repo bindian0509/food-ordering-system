@@ -9,10 +9,7 @@ import com.bharat.food.orderin.system.payment.service.domain.ports.input.message
 import com.bharat.food.orderin.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
 import com.bharat.food.orderin.system.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
 import com.bharat.food.orderin.system.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
-import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentEvent;
-import com.bharat.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

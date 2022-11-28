@@ -4,6 +4,7 @@ package com.bharat.food.ordering.system.order.service.domain;
  * @created Monday, 29 August 2022
  */
 
+import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.Product;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
@@ -23,12 +24,13 @@ import static com.bharat.food.ordering.system.domain.DomainConstants.UTC;
 public class OrderDomainServiceImpl implements OrderDomainService{
 
     @Override
-    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant,
+                                                      DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
         validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
         order.initializeOrder();
-        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(UTC)), orderCreatedEventDomainEventPublisher);
     }
 
     private void setOrderProductInformation(Order order, Restaurant restaurant) {
@@ -63,10 +65,12 @@ public class OrderDomainServiceImpl implements OrderDomainService{
     }
 
     @Override
-    public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages) {
+    public OrderCancelledEvent cancelOrderPayment(Order order,
+                                                  List<String> failureMessages,
+                                                  DomainEventPublisher<OrderCancelledEvent> orderCancelledEventDomainEventPublisher) {
         order.initCancel(failureMessages);
         log.info("Order payment has been cancelled for order with orderId : {}", order.getId().getValue());
-        return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderCancelledEvent(order, ZonedDateTime.now(ZoneId.of(UTC)), orderCancelledEventDomainEventPublisher);
     }
 
     @Override
