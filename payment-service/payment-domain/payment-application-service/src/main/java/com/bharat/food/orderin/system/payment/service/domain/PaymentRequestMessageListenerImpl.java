@@ -18,18 +18,12 @@ import org.springframework.stereotype.Service;
 public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageListener {
 
     private final PaymentRequestHelper paymentRequestHelper;
-    private final PaymentCompletedMessagePublisher paymentCompletedMessagePublisher;
-    private final PaymentCancelledMessagePublisher paymentCancelledMessagePublisher;
-    private final PaymentFailedMessagePublisher paymentFailedMessagePublisher;
 
     public PaymentRequestMessageListenerImpl(PaymentRequestHelper paymentRequestHelper,
                                              PaymentCompletedMessagePublisher paymentCompletedMessagePublisher,
                                              PaymentCancelledMessagePublisher paymentCancelledMessagePublisher,
                                              PaymentFailedMessagePublisher paymentFailedMessagePublisher) {
         this.paymentRequestHelper = paymentRequestHelper;
-        this.paymentCompletedMessagePublisher = paymentCompletedMessagePublisher;
-        this.paymentCancelledMessagePublisher = paymentCancelledMessagePublisher;
-        this.paymentFailedMessagePublisher = paymentFailedMessagePublisher;
     }
 
     @Override
