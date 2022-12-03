@@ -6,8 +6,10 @@ package com.food.ordering.system.payment.service.messaging.mapper;
 
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentStatus;
+import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
+import com.bharat.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -41,6 +43,21 @@ public class PaymentMessagingDataMapper {
                 .setCreatedAt(paymentCancelledEvent.getCreatedAt().toInstant())
                 .setPaymentStatus(PaymentStatus.valueOf(paymentCancelledEvent.getPayment().getPaymentStatus().name()))
                 .setFailureMessages(paymentCancelledEvent.getFailureMessages())
+                .build();
+    }
+
+    public PaymentResponseAvroModel
+    paymentFailedEventToPaymentResponseAvroModel (PaymentFailedEvent paymentFailedEvent) {
+        return PaymentResponseAvroModel.newBuilder()
+                .setId(UUID.randomUUID().toString())
+                .setSagaId("")
+                .setPaymentId(paymentFailedEvent.getPayment().getId().getValue().toString())
+                .setCustomerId (paymentFailedEvent.getPayment().getCustomerId().getValue().toString())
+                .setOrderId (paymentFailedEvent.getPayment().getOrderId().getValue().toString())
+                .setPrice (paymentFailedEvent.getPayment().getPrice().getAmount())
+                .setCreatedAt (paymentFailedEvent.getCreatedAt().toInstant())
+                .setPaymentStatus (PaymentStatus.valueOf(paymentFailedEvent.getPayment().getPaymentStatus().name()))
+                .setFailureMessages (paymentFailedEvent.getFailureMessages())
                 .build();
     }
 }
