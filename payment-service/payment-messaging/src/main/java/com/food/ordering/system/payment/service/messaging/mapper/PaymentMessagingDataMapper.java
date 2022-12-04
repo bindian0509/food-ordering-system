@@ -4,9 +4,11 @@ package com.food.ordering.system.payment.service.messaging.mapper;
  * @created Friday, 27 January 2023
  */
 
+import com.bharat.food.orderin.system.payment.service.domain.dto.PaymentRequest;
+import com.bharat.food.ordering.system.domain.vo.PaymentOrderStatus;
+import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentStatus;
-import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
@@ -58,6 +60,18 @@ public class PaymentMessagingDataMapper {
                 .setCreatedAt (paymentFailedEvent.getCreatedAt().toInstant())
                 .setPaymentStatus (PaymentStatus.valueOf(paymentFailedEvent.getPayment().getPaymentStatus().name()))
                 .setFailureMessages (paymentFailedEvent.getFailureMessages())
+                .build();
+    }
+
+    public PaymentRequest paymentRequestAvroModelToPaymentRequest (PaymentRequestAvroModel paymentRequestAvroModel) {
+        return PaymentRequest.builder()
+                .id(paymentRequestAvroModel.getId())
+                .sagaId(paymentRequestAvroModel.getSagaId())
+                .customerId(paymentRequestAvroModel.getCustomerId())
+                .orderId(paymentRequestAvroModel.getOrderId())
+                .price(paymentRequestAvroModel.getPrice())
+                .createdAt(paymentRequestAvroModel.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.valueOf(paymentRequestAvroModel.getPaymentOrderStatus().name()))
                 .build();
     }
 }
