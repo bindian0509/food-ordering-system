@@ -19,7 +19,8 @@ import java.util.UUID;
 @Component
 public class PaymentMessagingDataMapper {
 
-    public PaymentResponseAvroModel paymentCompletedEventToPaymentResponseAvroModel(PaymentCompletedEvent paymentCompletedEvent) {
+    public PaymentResponseAvroModel
+    paymentCompletedEventToPaymentResponseAvroModel(PaymentCompletedEvent paymentCompletedEvent) {
         return PaymentResponseAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
