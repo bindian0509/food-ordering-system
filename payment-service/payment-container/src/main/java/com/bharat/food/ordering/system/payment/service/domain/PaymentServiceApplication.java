@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = "com.bharat.food.ordering.system.payment.service.dataaccess")
 @SpringBootApplication(scanBasePackages = "com.bharat.food.ordering.system")
 public class PaymentServiceApplication {
-    
+
     public static void main(String[] args) {
         SpringApplication.run(PaymentServiceApplication.class, args);
     }
