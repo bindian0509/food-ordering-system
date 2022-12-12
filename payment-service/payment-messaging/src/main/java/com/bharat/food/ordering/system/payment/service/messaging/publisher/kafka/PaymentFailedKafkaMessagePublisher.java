@@ -4,8 +4,8 @@ package com.bharat.food.ordering.system.payment.service.messaging.publisher.kafk
  * @created Sunday, 29 January 2023
  */
 
-import com.bharat.food.orderin.system.payment.service.domain.config.PaymentServiceConfigData;
-import com.bharat.food.orderin.system.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
+import com.bharat.food.ordering.system.payment.service.domain.config.PaymentServiceConfigData;
+import com.bharat.food.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import com.bharat.food.ordering.system.kafka.producer.KafkaMessageHelper;
 import com.bharat.food.ordering.system.kafka.producer.service.KafkaProducer;

@@ -1,0 +1,11 @@
+server:
+  port: 8182
+
+logging:
+  level:
+    com.bharat.food.ordering.system: DEBUG
+
+
+payment-service:
+  payment-request-topic-name: payment-request
+  payment-response-topic-name: payment-response

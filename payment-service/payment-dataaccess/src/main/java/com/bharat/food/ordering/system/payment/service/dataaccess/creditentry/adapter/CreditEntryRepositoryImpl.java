@@ -4,7 +4,7 @@ package com.bharat.food.ordering.system.payment.service.dataaccess.creditentry.a
  * @created Thursday, 26 January 2023
  */
 
-import com.bharat.food.orderin.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
+import com.bharat.food.ordering.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
 import com.bharat.food.ordering.system.domain.vo.CustomerId;
 import com.bharat.food.ordering.system.payment.service.dataaccess.creditentry.mapper.CreditEntryDataAccessMapper;
 import com.bharat.food.ordering.system.payment.service.dataaccess.creditentry.repository.CreditEntryJpaRepository;

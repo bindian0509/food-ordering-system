@@ -4,7 +4,7 @@ package com.bharat.food.ordering.system.payment.service.messaging.listener.kafka
  * @created Sunday, 29 January 2023
  */
 
-import com.bharat.food.orderin.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
+import com.bharat.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import com.bharat.food.ordering.system.kafka.consumer.KafkaConsumer;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;

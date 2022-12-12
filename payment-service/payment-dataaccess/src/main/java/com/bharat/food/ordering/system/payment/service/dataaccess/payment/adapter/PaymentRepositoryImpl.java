@@ -5,7 +5,7 @@ package com.bharat.food.ordering.system.payment.service.dataaccess.payment.adapt
  */
 
 
-import com.bharat.food.orderin.system.payment.service.domain.ports.output.repository.PaymentRepository;
+import com.bharat.food.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import com.bharat.food.ordering.system.payment.service.dataaccess.payment.mapper.PaymentDataAccessMapper;
 import com.bharat.food.ordering.system.payment.service.dataaccess.payment.repository.PaymentJpaRepository;
 import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;

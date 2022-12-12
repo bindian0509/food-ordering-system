@@ -4,7 +4,7 @@ package com.bharat.food.ordering.system.payment.service.messaging.mapper;
  * @created Friday, 27 January 2023
  */
 
-import com.bharat.food.orderin.system.payment.service.domain.dto.PaymentRequest;
+import com.bharat.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 import com.bharat.food.ordering.system.domain.vo.PaymentOrderStatus;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
