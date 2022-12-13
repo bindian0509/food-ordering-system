@@ -9,3 +9,24 @@ logging:
 payment-service:
   payment-request-topic-name: payment-request
   payment-response-topic-name: payment-response
+
+spring:
+  jpa:
+    open-in-view: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=payment&binaryTransfer=true&reWriteBatchedInserts=true&stringtype=unspecified
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
+      schema-locations: classpath:init-schema.sql
+      mode: always
+      data-locations: classpath:init-data.sql
+      
