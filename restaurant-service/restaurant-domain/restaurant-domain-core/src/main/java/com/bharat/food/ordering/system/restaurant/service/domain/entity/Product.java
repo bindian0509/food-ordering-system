@@ -12,8 +12,14 @@ public class Product extends BaseEntity<ProductId> {
 
     private String name;
     private Money price;
-    private int quantity;
+    private final int quantity;
     private boolean available;
+
+    public void updateWithConfirmedNamePriceAndAvailability (String name, Money price, boolean available) {
+        this.name = name;
+        this.price = price;
+        this.available = available;
+    }
 
     private Product(Builder builder) {
         setId(builder.productId);

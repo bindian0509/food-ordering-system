@@ -12,7 +12,6 @@ import com.bharat.food.ordering.system.restaurant.service.domain.valueobject.Ord
 
 public class OrderApproval extends BaseEntity<OrderApprovalId>{
 
-
     private final RestaurantId restaurantId;
     private final OrderId orderId;
     private final OrderApprovalStatus orderApprovalStatus;
