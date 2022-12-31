@@ -9,6 +9,7 @@ import com.bharat.food.ordering.system.domain.vo.Money;
 import com.bharat.food.ordering.system.domain.vo.OrderId;
 import com.bharat.food.ordering.system.domain.vo.OrderStatus;
 import com.bharat.food.ordering.system.domain.vo.RestaurantId;
+import com.bharat.food.ordering.system.restaurant.service.domain.dto.RestaurantApprovalRequest;
 import com.bharat.food.ordering.system.restaurant.service.domain.entity.OrderDetail;
 import com.bharat.food.ordering.system.restaurant.service.domain.entity.Product;
 import com.bharat.food.ordering.system.restaurant.service.domain.entity.Restaurant;

@@ -9,13 +9,12 @@ import com.bharat.food.ordering.system.domain.vo.Money;
 import com.bharat.food.ordering.system.domain.vo.ProductId;
 
 public class Product extends BaseEntity<ProductId> {
-
     private String name;
     private Money price;
     private final int quantity;
     private boolean available;
 
-    public void updateWithConfirmedNamePriceAndAvailability (String name, Money price, boolean available) {
+    public void updateWithConfirmedNamePriceAndAvailability(String name, Money price, boolean available) {
         this.name = name;
         this.price = price;
         this.available = available;
@@ -29,6 +28,9 @@ public class Product extends BaseEntity<ProductId> {
         available = builder.available;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getName() {
         return name;
@@ -56,11 +58,7 @@ public class Product extends BaseEntity<ProductId> {
         private Builder() {
         }
 
-        public static Builder builder() {
-            return new Builder();
-        }
-
-        public Builder id(ProductId val) {
+        public Builder productId(ProductId val) {
             productId = val;
             return this;
         }
