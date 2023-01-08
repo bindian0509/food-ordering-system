@@ -1,4 +1,4 @@
-package com.bharat.food.ordering.system.order.service.dataaccess.restaurant.repository;
+package com.food.bharat.ordering.system.dataaccess.restaurant.repository;
 
 import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.entity.RestaurantEntity;
 import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.entity.RestaurantEntityId;
