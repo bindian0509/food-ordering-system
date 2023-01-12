@@ -19,15 +19,16 @@ import java.util.UUID;
 @Table(name = "order_restaurant_m_view", schema = "restaurant")
 @Entity
 public class RestaurantEntity {
+
     @Id
     private UUID restaurantId;
     @Id
     private UUID productId;
-
     private String restaurantName;
     private Boolean restaurantActive;
     private String productName;
     private BigDecimal productPrice;
+    private Boolean productAvailable;
 
     @Override
     public boolean equals(Object o) {
