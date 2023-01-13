@@ -1,4 +1,4 @@
-package com.food.bharat.ordering.system.dataaccess.restaurant.entity;
+package com.bharat.food.ordering.system.dataaccess.restaurant.entity;
 
 import lombok.*;
 
