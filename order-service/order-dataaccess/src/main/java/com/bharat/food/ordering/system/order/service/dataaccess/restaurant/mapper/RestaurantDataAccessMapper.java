@@ -1,10 +1,10 @@
 package com.bharat.food.ordering.system.order.service.dataaccess.restaurant.mapper;
 
+import com.bharat.food.ordering.system.dataaccess.restaurant.entity.RestaurantEntity;
+import com.bharat.food.ordering.system.dataaccess.restaurant.exception.RestaurantDataAccessException;
 import com.bharat.food.ordering.system.domain.vo.Money;
 import com.bharat.food.ordering.system.domain.vo.ProductId;
 import com.bharat.food.ordering.system.domain.vo.RestaurantId;
-import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.entity.RestaurantEntity;
-import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.exception.RestaurantDataAccessException;
 import com.bharat.food.ordering.system.order.service.domain.entity.Product;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
 import org.springframework.stereotype.Component;
@@ -23,16 +23,13 @@ public class RestaurantDataAccessMapper {
     }
 
     public Restaurant restaurantEntityToRestaurant(List<RestaurantEntity> restaurantEntities) {
-        RestaurantEntity restaurantEntity = restaurantEntities
-                .stream().findFirst()
-                .orElseThrow(() -> new RestaurantDataAccessException("Restaurant could not be found!"));
+        RestaurantEntity restaurantEntity =
+                restaurantEntities.stream().findFirst().orElseThrow(() ->
+                        new RestaurantDataAccessException("Restaurant could not be found!"));
 
         List<Product> restaurantProducts = restaurantEntities.stream().map(entity ->
-                new Product(
-                        new ProductId(entity.getProductId()),
-                        entity.getProductName(),
-                        new Money(entity.getProductPrice())))
-                .toList();
+                new Product(new ProductId(entity.getProductId()), entity.getProductName(),
+                        new Money(entity.getProductPrice()))).toList();
 
         return Restaurant.builder()
                 .restaurantId(new RestaurantId(restaurantEntity.getRestaurantId()))

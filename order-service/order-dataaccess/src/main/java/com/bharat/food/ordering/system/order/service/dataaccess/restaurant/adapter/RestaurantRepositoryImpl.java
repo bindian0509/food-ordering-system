@@ -1,8 +1,8 @@
 package com.bharat.food.ordering.system.order.service.dataaccess.restaurant.adapter;
 
-import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.entity.RestaurantEntity;
+import com.bharat.food.ordering.system.dataaccess.restaurant.entity.RestaurantEntity;
+import com.bharat.food.ordering.system.dataaccess.restaurant.repository.RestaurantJpaRepository;
 import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
-import com.bharat.food.ordering.system.order.service.dataaccess.restaurant.repository.RestaurantJpaRespository;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
 import org.springframework.stereotype.Component;
@@ -14,23 +14,22 @@ import java.util.UUID;
 @Component
 public class RestaurantRepositoryImpl implements RestaurantRepository {
 
-
-    private final RestaurantJpaRespository restaurantJpaRespository;
+    private final RestaurantJpaRepository restaurantJpaRepository;
     private final RestaurantDataAccessMapper restaurantDataAccessMapper;
 
-    public RestaurantRepositoryImpl(RestaurantJpaRespository restaurantJpaRespository,
+    public RestaurantRepositoryImpl(RestaurantJpaRepository restaurantJpaRepository,
                                     RestaurantDataAccessMapper restaurantDataAccessMapper) {
-        this.restaurantJpaRespository = restaurantJpaRespository;
+        this.restaurantJpaRepository = restaurantJpaRepository;
         this.restaurantDataAccessMapper = restaurantDataAccessMapper;
     }
 
     @Override
     public Optional<Restaurant> findRestaurantInformation(Restaurant restaurant) {
-        List<UUID> restaurantProducts = restaurantDataAccessMapper.restaurantToRestaurantProducts(restaurant);
-
-        Optional<List<RestaurantEntity>> restaurantEntities = restaurantJpaRespository
-                .findByRestaurantIdAndProductIdIn(restaurant.getId().getValue(), restaurantProducts);
-
+        List<UUID> restaurantProducts =
+                restaurantDataAccessMapper.restaurantToRestaurantProducts(restaurant);
+        Optional<List<RestaurantEntity>> restaurantEntities = restaurantJpaRepository
+                .findByRestaurantIdAndProductIdIn(restaurant.getId().getValue(),
+                        restaurantProducts);
         return restaurantEntities.map(restaurantDataAccessMapper::restaurantEntityToRestaurant);
     }
 }

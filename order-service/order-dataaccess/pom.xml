@@ -27,5 +27,9 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>common-dataaccess</artifactId>
+        </dependency>
     </dependencies>
 </project>
