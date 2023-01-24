@@ -4,6 +4,9 @@ package com.bharat.food.ordering.system.restaurant.service.messaging.mapper;
  * @created Tuesday, 07 February 2023
  */
 
+import com.bharat.food.ordering.system.domain.vo.ProductId;
+import com.bharat.food.ordering.system.domain.vo.RestaurantOrderStatus;
+import com.bharat.food.ordering.system.kafka.order.avro.model.OrderApprovalStatus;
 import com.bharat.food.ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.bharat.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import com.bharat.food.ordering.system.restaurant.service.domain.dto.RestaurantApprovalRequest;

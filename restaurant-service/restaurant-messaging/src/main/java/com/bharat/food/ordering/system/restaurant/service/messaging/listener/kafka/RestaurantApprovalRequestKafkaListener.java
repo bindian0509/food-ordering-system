@@ -4,8 +4,10 @@ package com.bharat.food.ordering.system.restaurant.service.messaging.listener.ka
  * @created Tuesday, 07 February 2023
  */
 
+import com.bharat.food.ordering.system.kafka.consumer.KafkaConsumer;
 import com.bharat.food.ordering.system.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.bharat.food.ordering.system.restaurant.service.domain.ports.input.message.listener.RestaurantApprovalRequestMessageListener;
+import com.bharat.food.ordering.system.restaurant.service.messaging.mapper.RestaurantMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -34,7 +36,7 @@ public class RestaurantApprovalRequestKafkaListener implements KafkaConsumer<Res
     @KafkaListener(id = "${kafka-consumer-config.restaurant-approval-consumer-group-id}",
             topics = "${restaurant-service.restaurant-approval-request-topic-name}")
     public void receive(@Payload List<RestaurantApprovalRequestAvroModel> messages,
-                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<String> keys,
+                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<Long> keys,
                         @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
         log.info("{} number of orders approval requests received with keys {}, partitions {} and offsets {}" +

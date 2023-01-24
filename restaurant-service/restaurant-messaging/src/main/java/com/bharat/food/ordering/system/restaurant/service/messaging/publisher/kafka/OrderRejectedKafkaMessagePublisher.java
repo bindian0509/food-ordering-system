@@ -7,6 +7,7 @@ package com.bharat.food.ordering.system.restaurant.service.messaging.publisher.k
 
 import com.bharat.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import com.bharat.food.ordering.system.kafka.producer.KafkaMessageHelper;
+import com.bharat.food.ordering.system.kafka.producer.service.KafkaProducer;
 import com.bharat.food.ordering.system.restaurant.service.domain.config.RestaurantServiceConfigData;
 import com.bharat.food.ordering.system.restaurant.service.domain.event.OrderRejectedEvent;
 import com.bharat.food.ordering.system.restaurant.service.domain.ports.output.message.publisher.OrderRejectedMessagePublisher;
