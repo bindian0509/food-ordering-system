@@ -36,7 +36,7 @@ public class RestaurantApprovalRequestKafkaListener implements KafkaConsumer<Res
     @KafkaListener(id = "${kafka-consumer-config.restaurant-approval-consumer-group-id}",
             topics = "${restaurant-service.restaurant-approval-request-topic-name}")
     public void receive(@Payload List<RestaurantApprovalRequestAvroModel> messages,
-                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<Long> keys,
+                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<String> keys,
                         @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
         log.info("{} number of orders approval requests received with keys {}, partitions {} and offsets {}" +
