@@ -32,5 +32,9 @@
             <groupId>com.bharat.food.ordering.system</groupId>
             <artifactId>common-application</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>saga</artifactId>
+        </dependency>
     </dependencies>
 </project>
