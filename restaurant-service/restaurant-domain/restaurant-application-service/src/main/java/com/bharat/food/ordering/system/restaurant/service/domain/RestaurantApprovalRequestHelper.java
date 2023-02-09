@@ -70,7 +70,7 @@ public class RestaurantApprovalRequestHelper {
         Optional<Restaurant> restaurantResult = restaurantRepository.findRestaurantInformation(restaurant);
         if (restaurantResult.isEmpty()) {
             log.error("Restaurant with id " + restaurant.getId().getValue() + " not found!");
-            throw new RestaurantNotFoundException("Restaurant with id " + restaurant.getId().getValue() +
+            throw new RestaurantNotFoundException("Restaurant with id: " + restaurant.getId().getValue() +
                     " not found!");
         }
 
