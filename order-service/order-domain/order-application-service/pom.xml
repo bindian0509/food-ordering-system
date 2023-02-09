@@ -40,5 +40,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>saga</artifactId>
+        </dependency>
     </dependencies>
 </project>

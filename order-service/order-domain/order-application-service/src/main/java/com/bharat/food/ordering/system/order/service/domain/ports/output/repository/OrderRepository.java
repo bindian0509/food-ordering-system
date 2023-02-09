@@ -1,5 +1,6 @@
 package com.bharat.food.ordering.system.order.service.domain.ports.output.repository;
 
+import com.bharat.food.ordering.system.domain.vo.OrderId;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.vo.TrackingId;
 
@@ -10,4 +11,6 @@ public interface OrderRepository {
     Order save(Order order);
 
     Optional<Order> findByTrackingId(TrackingId trackingId);
+
+    Optional<Order> findById(OrderId orderId);
 }
