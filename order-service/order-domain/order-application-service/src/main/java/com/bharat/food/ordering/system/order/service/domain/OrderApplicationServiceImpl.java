@@ -3,7 +3,7 @@ package com.bharat.food.ordering.system.order.service.domain;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
-import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderReponse;
+import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.ports.input.service.OrderApplicationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
     }
 
     @Override
-    public TrackOrderReponse trackOrder(TrackOrderQuery trackOrderQuery) {
+    public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
         return orderTrackCommandHandler.trackOrder(trackOrderQuery);
     }
 }

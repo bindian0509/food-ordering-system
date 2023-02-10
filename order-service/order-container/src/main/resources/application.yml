@@ -29,6 +29,8 @@ spring:
       platform: postgres
       schema-locations: classpath:init-schema.sql
       mode: always
+hibernate:
+  enable_lazy_load_no_trans: true
 
 kafka-config:
   bootstrap-servers: localhost:19092, localhost:29092, localhost:39092

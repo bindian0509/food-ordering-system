@@ -7,14 +7,13 @@ package com.bharat.food.ordering.system.order.service.domain.vo;
 import java.util.Objects;
 import java.util.UUID;
 
-public class StreetAdress {
-
+public class StreetAddress {
     private final UUID id;
     private final String street;
     private final String postalCode;
     private final String city;
 
-    public StreetAdress(UUID id, String street, String postalCode, String city) {
+    public StreetAddress(UUID id, String street, String postalCode, String city) {
         this.id = id;
         this.street = street;
         this.postalCode = postalCode;
@@ -41,7 +40,7 @@ public class StreetAdress {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StreetAdress that = (StreetAdress) o;
+        StreetAddress that = (StreetAddress) o;
         return street.equals(that.street) && postalCode.equals(that.postalCode) && city.equals(that.city);
     }
 

@@ -1,7 +1,7 @@
 package com.bharat.food.ordering.system.order.service.domain;
 
 import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
-import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderReponse;
+import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderNotFoundException;
 import com.bharat.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
@@ -26,9 +26,10 @@ public class OrderTrackCommandHandler {
     }
 
     @Transactional(readOnly = true)
-    TrackOrderReponse trackOrder(TrackOrderQuery trackOrderQuery) {
+    TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
         Optional<Order> orderResult =
                 orderRepository.findByTrackingId(new TrackingId(trackOrderQuery.getOrderTrackingId()));
+        log.info(String.valueOf(orderResult.get()));
         if (orderResult.isEmpty()) {
             log.warn("Couldn't find order with tracking id : {} ",trackOrderQuery.getOrderTrackingId());
             throw new OrderNotFoundException("Couldn't find order with tracking id : "+trackOrderQuery.getOrderTrackingId());
