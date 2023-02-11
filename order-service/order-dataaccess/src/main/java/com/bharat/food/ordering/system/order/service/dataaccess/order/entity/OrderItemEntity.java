@@ -16,10 +16,8 @@ import java.util.UUID;
 @Table(name = "order_items")
 @Entity
 public class OrderItemEntity {
-
     @Id
     private Long id;
-
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")

@@ -14,7 +14,6 @@ import java.util.UUID;
 @Table(name = "order_address")
 @Entity
 public class OrderAddressEntity {
-
     @Id
     private UUID id;
 

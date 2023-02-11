@@ -19,10 +19,7 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
 
     private final PaymentRequestHelper paymentRequestHelper;
 
-    public PaymentRequestMessageListenerImpl(PaymentRequestHelper paymentRequestHelper,
-                                             PaymentCompletedMessagePublisher paymentCompletedMessagePublisher,
-                                             PaymentCancelledMessagePublisher paymentCancelledMessagePublisher,
-                                             PaymentFailedMessagePublisher paymentFailedMessagePublisher) {
+    public PaymentRequestMessageListenerImpl(PaymentRequestHelper paymentRequestHelper) {
         this.paymentRequestHelper = paymentRequestHelper;
     }
 
@@ -30,7 +27,6 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
     public void completePayment(PaymentRequest paymentRequest) {
         PaymentEvent paymentEvent = paymentRequestHelper.persistPayment(paymentRequest);
         fireEvent(paymentEvent);
-
     }
 
     @Override
@@ -43,7 +39,6 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
         log.info("Publishing payment event with payment id: {} and order id: {}",
                 paymentEvent.getPayment().getId().getValue(),
                 paymentEvent.getPayment().getOrderId().getValue());
-
         paymentEvent.fire();
     }
 }

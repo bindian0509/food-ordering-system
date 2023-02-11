@@ -17,11 +17,13 @@ import java.util.List;
 
 public interface PaymentDomainService {
 
-    PaymentEvent validateAndInitializePayment(Payment payment,
-                                              CreditEntry creditEntry,
-                                              List<CreditHistory> creditHistories,
-                                              List<String> failureMessages,
-                                              DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher, DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher);
+    PaymentEvent validateAndInitiatePayment(Payment payment,
+                                            CreditEntry creditEntry,
+                                            List<CreditHistory> creditHistories,
+                                            List<String> failureMessages,
+                                            DomainEventPublisher<PaymentCompletedEvent>
+                                                    paymentCompletedEventDomainEventPublisher, DomainEventPublisher<PaymentFailedEvent> paymentFailedEventDomainEventPublisher);
+
     PaymentEvent validateAndCancelPayment(Payment payment,
                                           CreditEntry creditEntry,
                                           List<CreditHistory> creditHistories,
