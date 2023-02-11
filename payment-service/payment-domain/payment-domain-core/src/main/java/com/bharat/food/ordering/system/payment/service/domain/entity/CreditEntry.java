@@ -15,11 +15,11 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
     private Money totalCreditAmount;
 
     public void addCreditAmount(Money amount) {
-        this.totalCreditAmount.add(amount);
+        totalCreditAmount = totalCreditAmount.add(amount);
     }
 
     public void subtractCreditAmount(Money amount) {
-        this.totalCreditAmount.subtract(amount);
+        totalCreditAmount = totalCreditAmount.subtract(amount);
     }
 
     private CreditEntry(Builder builder) {
@@ -27,6 +27,11 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
         customerId = builder.customerId;
         totalCreditAmount = builder.totalCreditAmount;
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
 
     public CustomerId getCustomerId() {
         return customerId;
@@ -36,10 +41,6 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
         return totalCreditAmount;
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     public static final class Builder {
         private CreditEntryId creditEntryId;
         private CustomerId customerId;
@@ -47,7 +48,6 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
 
         private Builder() {
         }
-
 
         public Builder creditEntryId(CreditEntryId val) {
             creditEntryId = val;

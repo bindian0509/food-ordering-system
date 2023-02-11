@@ -41,8 +41,8 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
         payment.initializePayment();
         validateCreditEntry(payment, creditEntry, failureMessages);
         subtractCreditEntry(payment, creditEntry);
-        validateCreditHistory(creditEntry, creditHistories, failureMessages);
         updateCreditHistory(payment, creditHistories, TransactionType.DEBIT);
+        validateCreditHistory(creditEntry, creditHistories, failureMessages);
 
         if (failureMessages.isEmpty()) {
             log.info("Payment is initiated for order id: {}", payment.getOrderId().getValue());
@@ -93,7 +93,10 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
     }
 
     private void subtractCreditEntry(Payment payment, CreditEntry creditEntry) {
+        log.error("Old credit entry : {} ", creditEntry.getTotalCreditAmount().getAmount());
+        log.error("Payment Amount to be deducted from credit entry : {} ", payment.getPrice().getAmount());
         creditEntry.subtractCreditAmount(payment.getPrice());
+        log.error("New credit entry : {} ", creditEntry.getTotalCreditAmount().getAmount());
     }
 
     private void updateCreditHistory(Payment payment,
