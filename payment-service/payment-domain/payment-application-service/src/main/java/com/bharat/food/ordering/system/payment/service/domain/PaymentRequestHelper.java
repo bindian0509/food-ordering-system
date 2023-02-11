@@ -68,6 +68,7 @@ public class PaymentRequestHelper {
         Payment payment = paymentDataMapper.paymentRequestModelToPayment(paymentRequest);
         CreditEntry creditEntry = getCreditEntry(payment.getCustomerId());
         List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
+        log.error("Credit Histories size from persist payment : {} ", creditHistories.size());
         List<String> failureMessages = new ArrayList<>();
         PaymentEvent paymentEvent =
                 paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories, failureMessages,
@@ -114,6 +115,7 @@ public class PaymentRequestHelper {
             throw new PaymentApplicationServiceException("Could not find credit history for customer: " +
                     customerId.getValue());
         }
+        log.error("Credit history size : {} ", creditHistories.get().size());
         return creditHistories.get();
     }
 

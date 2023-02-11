@@ -41,8 +41,8 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
         payment.initializePayment();
         validateCreditEntry(payment, creditEntry, failureMessages);
         subtractCreditEntry(payment, creditEntry);
-        updateCreditHistory(payment, creditHistories, TransactionType.DEBIT);
         validateCreditHistory(creditEntry, creditHistories, failureMessages);
+        updateCreditHistory(payment, creditHistories, TransactionType.DEBIT);
 
         if (failureMessages.isEmpty()) {
             log.info("Payment is initiated for order id: {}", payment.getOrderId().getValue());
@@ -121,7 +121,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
                     " doesn't have enough credit according to credit history!");
         }
         for (CreditHistory ch : creditHistories)
-            log.info("Customer : {} Amount : {} and transaction type : {}  ", ch.getCustomerId().getValue(), ch.getAmount().getAmount(), ch.getTransactionType());
+            log.info("Customer : {} Amount : {} and transaction type : {}  Ch Id {} " , ch.getCustomerId().getValue(), ch.getAmount().getAmount(), ch.getTransactionType(), ch.getId().getValue());
         log.error("---------------");
         log.error("Credit Entry's Total Credit Amount : {} ", creditEntry.getTotalCreditAmount().getAmount());
         log.error("Total Debit History : {} ", totalDebitHistory.getAmount());
