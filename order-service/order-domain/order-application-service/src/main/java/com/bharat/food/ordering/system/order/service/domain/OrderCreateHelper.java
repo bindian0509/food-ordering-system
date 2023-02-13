@@ -11,7 +11,6 @@ import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.bharat.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
-import com.bharat.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;

@@ -1,24 +1,11 @@
 package com.bharat.food.ordering.system.order.service.domain;
 
-import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
-import com.bharat.food.ordering.system.order.service.domain.entity.Customer;
-import com.bharat.food.ordering.system.order.service.domain.entity.Order;
-import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
-import com.bharat.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.bharat.food.ordering.system.order.service.domain.mapper.OrderDataMapper;
-import com.bharat.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
-import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.CustomerRepository;
-import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
-import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @Component

@@ -10,7 +10,6 @@ import com.bharat.food.ordering.system.order.service.domain.dto.message.PaymentR
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderPaidEvent;
 import com.bharat.food.ordering.system.order.service.domain.exception.OrderNotFoundException;
-import com.bharat.food.ordering.system.order.service.domain.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.bharat.food.ordering.system.saga.SagaStep;
 import lombok.extern.slf4j.Slf4j;
