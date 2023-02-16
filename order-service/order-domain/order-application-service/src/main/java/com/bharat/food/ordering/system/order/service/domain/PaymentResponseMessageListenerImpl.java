@@ -10,10 +10,9 @@ import org.springframework.validation.annotation.Validated;
 import static com.bharat.food.ordering.system.order.service.domain.entity.Order.FAILURE_MESSAGE_DELIMITER;
 
 @Slf4j
-@Service
 @Validated
+@Service
 public class PaymentResponseMessageListenerImpl implements PaymentResponseMessageListener {
-
 
     private final OrderPaymentSaga orderPaymentSaga;
 
@@ -23,18 +22,14 @@ public class PaymentResponseMessageListenerImpl implements PaymentResponseMessag
 
     @Override
     public void paymentCompleted(PaymentResponse paymentResponse) {
-
-        OrderPaidEvent domainEvent = orderPaymentSaga.process(paymentResponse);
-        log.info("Publishing orderPaidEvent for orderId : {} ", paymentResponse.getOrderId());
-        domainEvent.fire();
-
+        orderPaymentSaga.process(paymentResponse);
+        log.info("Order Payment Saga process operation is completed for order id: {}", paymentResponse.getOrderId());
     }
 
     @Override
     public void paymentCancelled(PaymentResponse paymentResponse) {
-
         orderPaymentSaga.rollback(paymentResponse);
-        log.info("order is rolled back for orderId : {} with following failure messages : {} ",
+        log.info("Order is roll backed for order id: {} with failure messages: {}",
                 paymentResponse.getOrderId(),
                 String.join(FAILURE_MESSAGE_DELIMITER, paymentResponse.getFailureMessages()));
     }
