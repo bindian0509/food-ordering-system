@@ -1,4 +1,4 @@
-package com.bharat.food.ordering.system.order.service.dataaccess.order.exception;
+package com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.exception;
 /*
  * @author bharat.verma
  * @created Thursday, 16 February 2023

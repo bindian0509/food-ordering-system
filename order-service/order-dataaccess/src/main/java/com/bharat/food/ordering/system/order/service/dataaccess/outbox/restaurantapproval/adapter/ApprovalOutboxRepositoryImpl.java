@@ -1,13 +1,13 @@
-package com.bharat.food.ordering.system.order.service.dataaccess.order.adapter;
+package com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.adapter;
 /*
  * @author bharat.verma
  * @created Thursday, 16 February 2023
  */
 
 
-import com.bharat.food.ordering.system.order.service.dataaccess.order.exception.ApprovalOutboxNotFoundException;
-import com.bharat.food.ordering.system.order.service.dataaccess.order.mapper.ApprovalOutboxDataAccessMapper;
-import com.bharat.food.ordering.system.order.service.dataaccess.order.repository.ApprovalOutboxJpaRepository;
+import com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.exception.ApprovalOutboxNotFoundException;
+import com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.mapper.ApprovalOutboxDataAccessMapper;
+import com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.repository.ApprovalOutboxJpaRepository;
 import com.bharat.food.ordering.system.order.service.domain.outbox.model.approval.OrderApprovalOutboxMessage;
 import com.bharat.food.ordering.system.order.service.domain.ports.output.repository.ApprovalOutboxRepository;
 import com.bharat.food.ordering.system.outbox.OutboxStatus;

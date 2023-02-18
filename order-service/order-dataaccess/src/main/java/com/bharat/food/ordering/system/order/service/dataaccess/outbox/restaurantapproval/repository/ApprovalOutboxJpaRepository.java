@@ -1,10 +1,10 @@
-package com.bharat.food.ordering.system.order.service.dataaccess.order.repository;
+package com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.repository;
 /*
  * @author bharat.verma
  * @created Thursday, 16 February 2023
  */
 
-import com.bharat.food.ordering.system.order.service.dataaccess.order.entity.ApprovalOutboxEntity;
+import com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.entity.ApprovalOutboxEntity;
 import com.bharat.food.ordering.system.outbox.OutboxStatus;
 import com.bharat.food.ordering.system.saga.SagaStatus;
 import org.springframework.data.jpa.repository.JpaRepository;

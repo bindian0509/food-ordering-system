@@ -1,4 +1,4 @@
-package com.bharat.food.ordering.system.order.service.dataaccess.order.entity;
+package com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.entity;
 /*
  * @author bharat.verma
  * @created Thursday, 16 February 2023

@@ -1,11 +1,11 @@
-package com.bharat.food.ordering.system.order.service.dataaccess.order.mapper;
+package com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.mapper;
 /*
  * @author bharat.verma
  * @created Thursday, 16 February 2023
  */
 
 
-import com.bharat.food.ordering.system.order.service.dataaccess.order.entity.ApprovalOutboxEntity;
+import com.bharat.food.ordering.system.order.service.dataaccess.outbox.restaurantapproval.entity.ApprovalOutboxEntity;
 import com.bharat.food.ordering.system.order.service.domain.outbox.model.approval.OrderApprovalOutboxMessage;
 import org.springframework.stereotype.Component;
 

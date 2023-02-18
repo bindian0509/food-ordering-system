@@ -4,7 +4,6 @@ package com.bharat.food.ordering.system.order.service.domain;
  * @created Wednesday, 08 February 2023
  */
 
-import com.bharat.food.ordering.system.domain.event.EmptyEvent;
 import com.bharat.food.ordering.system.domain.vo.OrderId;
 import com.bharat.food.ordering.system.domain.vo.OrderStatus;
 import com.bharat.food.ordering.system.domain.vo.PaymentStatus;
