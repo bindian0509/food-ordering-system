@@ -12,6 +12,7 @@ import com.bharat.food.ordering.system.kafka.order.avro.model.PaymentStatus;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import com.bharat.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
+import com.bharat.food.ordering.system.payment.service.domain.outbox.model.OrderEventPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
