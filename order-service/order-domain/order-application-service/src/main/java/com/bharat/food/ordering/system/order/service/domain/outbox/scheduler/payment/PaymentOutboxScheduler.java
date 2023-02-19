@@ -35,8 +35,8 @@ public class PaymentOutboxScheduler implements OutboxScheduler {
 
     @Override
     @Transactional
-    @Scheduled(fixedDelayString = "${order-service.outbox-scheduler-fixed-rate}",
-            initialDelayString = "${order-service.outbox-scheduler-initial-delay}")
+    @Scheduled(fixedDelayString = "${order-service.outbox-scheduler-fixed-rate:1}",
+            initialDelayString = "${order-service.outbox-scheduler-initial-delay:1}")
     public void processOutboxMessage() {
         Optional<List<OrderPaymentOutboxMessage>> outboxMessagesResponse =
                 paymentOutboxHelper.getPaymentOutboxMessageByOutboxStatusAndSagaStatus(
