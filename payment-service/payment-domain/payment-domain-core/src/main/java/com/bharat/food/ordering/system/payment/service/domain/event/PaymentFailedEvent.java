@@ -4,7 +4,6 @@ package com.bharat.food.ordering.system.payment.service.domain.event;
  * @created Friday, 20 January 2023
  */
 
-import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
 
 import java.time.ZonedDateTime;

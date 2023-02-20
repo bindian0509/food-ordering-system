@@ -5,10 +5,10 @@ package com.bharat.food.ordering.system.payment.service.dataaccess.payment.adapt
  */
 
 
-import com.bharat.food.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import com.bharat.food.ordering.system.payment.service.dataaccess.payment.mapper.PaymentDataAccessMapper;
 import com.bharat.food.ordering.system.payment.service.dataaccess.payment.repository.PaymentJpaRepository;
 import com.bharat.food.ordering.system.payment.service.domain.entity.Payment;
+import com.bharat.food.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

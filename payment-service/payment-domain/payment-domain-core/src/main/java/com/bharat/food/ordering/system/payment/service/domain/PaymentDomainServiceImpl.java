@@ -4,7 +4,6 @@ package com.bharat.food.ordering.system.payment.service.domain;
  * @created Friday, 20 January 2023
  */
 
-import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.domain.vo.Money;
 import com.bharat.food.ordering.system.domain.vo.PaymentStatus;
 import com.bharat.food.ordering.system.payment.service.domain.entity.CreditEntry;

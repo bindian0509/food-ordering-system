@@ -4,12 +4,12 @@ package com.bharat.food.ordering.system.payment.service.dataaccess.credithistory
  * @created Thursday, 26 January 2023
  */
 
-import com.bharat.food.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import com.bharat.food.ordering.system.domain.vo.CustomerId;
 import com.bharat.food.ordering.system.payment.service.dataaccess.credithistory.entity.CreditHistoryEntity;
 import com.bharat.food.ordering.system.payment.service.dataaccess.credithistory.mapper.CreditHistoryDataAccessMapper;
 import com.bharat.food.ordering.system.payment.service.dataaccess.credithistory.repository.CreditHistoryJpaRepository;
 import com.bharat.food.ordering.system.payment.service.domain.entity.CreditHistory;
+import com.bharat.food.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
