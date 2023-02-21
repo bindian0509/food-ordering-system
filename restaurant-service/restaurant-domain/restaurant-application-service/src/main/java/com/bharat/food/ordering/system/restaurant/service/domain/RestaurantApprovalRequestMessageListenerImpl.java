@@ -5,7 +5,6 @@ package com.bharat.food.ordering.system.restaurant.service.domain;
  */
 
 import com.bharat.food.ordering.system.restaurant.service.domain.dto.RestaurantApprovalRequest;
-import com.bharat.food.ordering.system.restaurant.service.domain.event.OrderApprovalEvent;
 import com.bharat.food.ordering.system.restaurant.service.domain.ports.input.message.listener.RestaurantApprovalRequestMessageListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
