@@ -4,7 +4,6 @@ package com.bharat.food.ordering.system.order.service.domain;
  * @created Monday, 29 August 2022
  */
 
-import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.Product;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;

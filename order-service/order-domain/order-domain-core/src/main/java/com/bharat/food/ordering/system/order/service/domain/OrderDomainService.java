@@ -1,6 +1,5 @@
 package com.bharat.food.ordering.system.order.service.domain;
 
-import com.bharat.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import com.bharat.food.ordering.system.order.service.domain.entity.Order;
 import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
