@@ -3,7 +3,7 @@ server:
 
 logging:
   level:
-    com.food.ordering.system: DEBUG
+    com.bharat.food.ordering.system: DEBUG
 
 restaurant-service:
   restaurant-approval-request-topic-name: restaurant-approval-request
