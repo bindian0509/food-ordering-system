@@ -28,5 +28,9 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bharat.food.ordering.system</groupId>
+            <artifactId>outbox</artifactId>
+        </dependency>
     </dependencies>
 </project>
