@@ -5,6 +5,8 @@ package com.bharat.food.ordering.system.customer.service;
  */
 
 
+import com.bharat.food.ordering.system.customer.service.domain.CustomerDomainService;
+import com.bharat.food.ordering.system.customer.service.domain.CustomerDomainServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
