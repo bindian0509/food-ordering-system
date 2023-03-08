@@ -11,6 +11,10 @@
         <module>payment-service</module>
         <module>restaurant-service</module>
         <module>customer-service/customer-container</module>
+        <module>customer-service/customer-application</module>
+        <module>customer-service/customer-dataaccess</module>
+        <module>customer-service/customer-messaging</module>
+        <module>customer-service/customer-domain</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
