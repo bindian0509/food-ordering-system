@@ -10,6 +10,7 @@
         <module>customer-service</module>
         <module>payment-service</module>
         <module>restaurant-service</module>
+        <module>customer-service/customer-container</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
