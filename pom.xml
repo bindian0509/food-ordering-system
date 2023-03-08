@@ -10,11 +10,6 @@
         <module>customer-service</module>
         <module>payment-service</module>
         <module>restaurant-service</module>
-        <module>customer-service/customer-container</module>
-        <module>customer-service/customer-application</module>
-        <module>customer-service/customer-dataaccess</module>
-        <module>customer-service/customer-messaging</module>
-        <module>customer-service/customer-domain</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -157,6 +152,31 @@
             <dependency>
                 <groupId>com.bharat.food.ordering.system</groupId>
                 <artifactId>outbox</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>customer-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>customer-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>customer-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>customer-dataaccess</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bharat.food.ordering.system</groupId>
+                <artifactId>customer-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
