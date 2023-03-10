@@ -4,6 +4,10 @@ package com.bharat.food.ordering.system.customer.service.messaging.mapper;
  * @created Saturday, 11 March 2023
  */
 
+import com.bharat.food.ordering.system.customer.service.domain.event.CustomerCreatedEvent;
+import com.bharat.food.ordering.system.kafka.order.avro.model.CustomerAvroModel;
+import org.springframework.stereotype.Component;
+
 @Component
 public class CustomerMessagingDataMapper {
 
