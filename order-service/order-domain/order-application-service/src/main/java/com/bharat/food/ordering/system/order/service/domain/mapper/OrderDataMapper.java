@@ -4,11 +4,9 @@ import com.bharat.food.ordering.system.domain.vo.*;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.dto.create.OrderAddress;
+import com.bharat.food.ordering.system.order.service.domain.dto.message.CustomerModel;
 import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
-import com.bharat.food.ordering.system.order.service.domain.entity.Order;
-import com.bharat.food.ordering.system.order.service.domain.entity.OrderItem;
-import com.bharat.food.ordering.system.order.service.domain.entity.Product;
-import com.bharat.food.ordering.system.order.service.domain.entity.Restaurant;
+import com.bharat.food.ordering.system.order.service.domain.entity.*;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.bharat.food.ordering.system.order.service.domain.event.OrderPaidEvent;
@@ -97,6 +95,12 @@ public class OrderDataMapper {
                 .build();
     }
 
+    public Customer customerModelToCustomer(CustomerModel customerModel) {
+        return new Customer(new CustomerId(UUID.fromString(customerModel.getId())),
+                customerModel.getUsername(),
+                customerModel.getFirstName(),
+                customerModel.getLastName());
+    }
 
     private List<OrderItem> orderItemsToOrderItemEntities(
             List<com.bharat.food.ordering.system.order.service.domain.dto.create.OrderItem> orderItems) {
