@@ -103,7 +103,6 @@ public class Product extends org.apache.avro.specific.SpecificRecordBase impleme
   }
 
   // Used by DatumReader.  Applications should not call.
-  @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = value$ != null ? value$.toString() : null; break;
@@ -307,7 +306,6 @@ public class Product extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Product build() {
       try {
         Product record = new Product();

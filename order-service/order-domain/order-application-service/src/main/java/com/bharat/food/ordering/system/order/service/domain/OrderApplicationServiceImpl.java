@@ -5,11 +5,9 @@ import com.bharat.food.ordering.system.order.service.domain.dto.create.CreateOrd
 import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
 import com.bharat.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.bharat.food.ordering.system.order.service.domain.ports.input.service.OrderApplicationService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-@Slf4j
 @Validated
 @Service
 public class OrderApplicationServiceImpl implements OrderApplicationService {

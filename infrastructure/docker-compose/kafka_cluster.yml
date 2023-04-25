@@ -106,12 +106,13 @@ services:
       - kafka-broker-3
       - schema-registry
     volumes:
-      - "/Users/Shared/debezium-connector-schemaregistry-7.2.5:/kafka/connect/debezium-connector-schemaregistry-7.2.5"
+      - "/home/bharat/debezium-connector-schemaregistry-7.4.1:/kafka/connect/debezium-connector-schemaregistry-7.4.1"
     networks:
       - ${GLOBAL_NETWORK:-kafka}
   kafka-ui:
     container_name: kafka-ui
     image: provectuslabs/kafka-ui:latest
+    user: "0:0"
     ports:
       - "9000:8080"
     environment:

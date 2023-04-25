@@ -127,7 +127,6 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
   }
 
   // Used by DatumReader.  Applications should not call.
-  @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = value$ != null ? value$.toString() : null; break;
@@ -466,7 +465,6 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public CustomerAvroModel build() {
       try {
         CustomerAvroModel record = new CustomerAvroModel();
